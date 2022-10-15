@@ -1,0 +1,179 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: tahoma;
+    background: linear-gradient(90deg, #000000cf, #fafafa);
+}
+
+:root {
+    --main-color: #03a9f4a3;
+}
+
+
+/* Start Slider(pagination ترقيم) With Vanilla Javascript */
+
+.slider-parent {
+    padding: 10px;
+}
+
+.slider-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+    height: 690px;
+    overflow: hidden;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    border-radius: 20px;
+}
+
+.slider-container::before {
+    position: absolute;
+    top: -200%;
+    left: 0;
+    content: attr(data-info);
+    width: 100%;
+    height: 100%;
+    z-index: 50;
+    text-transform: capitalize;
+    color: aqua;
+    transition: .7s;
+    font-size: 20px;
+    font-family: monospace;
+    text-shadow: 2px 3px 5px black;
+    text-align: center;
+}
+
+.slider-container:hover::before {
+    top: 90%;
+}
+
+.slider-container .slider-number {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: darkgray;
+    text-align: center;
+    text-transform: capitalize;
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 2px;
+    z-index: 2;
+}
+
+.slider-container img {
+    position: absolute;
+    z-index: 1;
+    opacity: 0;
+    transition: all .5s;
+    border-radius: 20px;
+    max-width: 100%;
+    filter: drop-shadow(2px 2px 2px black);
+}
+
+.slider-container:hover img {
+    filter: grayscale(50%);
+    transform: rotate(-1deg) scale(1.05);
+}
+
+.slider-container img.active {
+    opacity: 1;
+}
+
+.slider-control {
+    max-width: 1000px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+}
+
+.slider-control .next,
+.slider-control .previous {
+    flex-basis: 15%;
+    padding: 5px 20px;
+    background: #03a9f4a3;
+    color: white;
+    font-size: 20px;
+    text-transform: capitalize;
+    border-radius: 5px;
+    box-shadow: 5px 4px 5px 3px grey;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.slider-control span:first-child.disabled,
+.slider-control span:last-child.disabled {
+    background: rgb(45 169 226 / 42%);
+    cursor: no-drop;
+}
+
+.indicators {
+    text-align: center;
+}
+
+.indicators ul {
+    list-style-type: none;
+}
+
+.indicators ul li {
+    display: inline-block;
+    padding: 7px;
+    margin: 0 5px;
+    border-radius: 3px;
+    box-shadow: 0 0 3px 2px grey;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    color: white;
+}
+
+.indicators ul li.active {
+    background-color: var(--main-color);
+}
+
+@media (max-width:990px) {
+    .slider-container img {
+        height: 65vh;
+    }
+}
+
+@media (max-width:768px) {
+    .slider-container:hover::before {
+        top: 84%
+    }
+}
+
+@media (max-width:425px) {
+    .slider-container:hover::before {
+        top: 80%;
+    }
+}
+
+@media (max-width:320px) {
+    .slider-container {
+        height: 550px;
+    }
+    .slider-control {
+        flex-direction: column;
+    }
+    .slider-control span {
+        margin-bottom: 20px;
+    }
+    .slider-container:hover::before {
+        font-size: 18px;
+        top: 60%;
+    }
+    .slider-container img {
+        height: 50vh;
+    }
+}
+
+
+/* End Slider(pagination ترقيم) With Vanilla Javascript */
